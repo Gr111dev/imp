@@ -40,7 +40,7 @@ public class OtoD {
                 System.out.print(mat[i][j] + " ");
                 octal = octal * 8 + mat[i][j];
             }
-            System.out.println("\t\t" + octal);
+            System.out.println("\t" + octal);
         }
     }
 }
@@ -60,15 +60,6 @@ public class OtoD {
  octal           | int        | Stores the calculated decimal equivalent of the row.
  args            | String[]   | Stores command line arguments.
 =================================================================================
-
-
-
-
-
-
-
-
-
 
 =================================================================================
                                    ALGORITHM
