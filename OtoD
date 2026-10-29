@@ -1,0 +1,93 @@
+import java.util.Scanner;
+
+public class OtoD {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        
+        System.out.print("ENTER ROW SIZE M=");
+        int M = in.nextInt();
+        System.out.print("ENTER COLUMN SIZE N=");
+        int N = in.nextInt();
+        
+        if (M <= 0 || M >= 10 || N <= 2 || N >= 6) {
+            System.out.println("OUT OF RANGE"); return; 
+        }
+        
+        int[][] mat = new int[M][N];
+        
+        for (int i = 0; i < M; i++) {
+            System.out.print("ENTER ELEMENTS FOR ROW " + (i + 1) + ": ");
+            String row = in.next(); 
+            
+            // Check if the user entered exactly N digits
+            if (row.length() != N) {
+                System.out.println("INVALID INPUT"); return;
+            }
+            
+            for (int j = 0; j < N; j++) {
+                mat[i][j] = row.charAt(j) - '0'; 
+                
+                if (mat[i][j] < 0 || mat[i][j] > 7) {
+                    System.out.println("INVALID INPUT"); return; 
+                }
+            }
+        }
+        
+        System.out.println("FILLED MATRIX\tDECIMAL EQUIVALENT");
+        for (int i = 0; i < M; i++) {
+            int octal = 0; 
+            for (int j = 0; j < N; j++) {
+                System.out.print(mat[i][j] + " ");
+                octal = octal * 8 + mat[i][j];
+            }
+            System.out.println("\t\t" + octal);
+        }
+    }
+}
+
+/* ==============================================================================
+                          VARIABLE DESCRIPTION TABLE
+=================================================================================
+ VARIABLE NAME   | DATA TYPE  | DESCRIPTION
+-----------------|------------|--------------------------------------------------
+ in              | Scanner    | Object used to accept input from the console.
+ M               | int        | Stores the number of rows of the matrix.
+ N               | int        | Stores the number of columns of the matrix.
+ mat[][]         | int[][]    | 2D array to store the digits of the octal numbers.
+ i               | int        | Loop control variable for iterating through rows.
+ row             | String     | Stores the continuous string input for a single row.
+ j               | int        | Loop control variable for iterating through columns.
+ octal           | int        | Stores the calculated decimal equivalent of the row.
+ args            | String[]   | Stores command line arguments.
+=================================================================================
+
+=================================================================================
+                                   ALGORITHM
+=================================================================================
+Step 1: Start.
+Step 2: Accept the number of rows in variable M and columns in variable N.
+Step 3: If M <= 0 OR M >= 10 OR N <= 2 OR N >= 6, then:
+        (a) Print "OUT OF RANGE".
+        (b) Go to Step 16.
+Step 4: Declare a 2D integer array mat of size M x N.
+Step 5: For i = 0 to M - 1, repeat Steps 6 to 9.
+Step 6: Accept the row elements as a single continuous string in variable row.
+Step 7: If the length of row is not equal to N, then:
+        (a) Print "INVALID INPUT".
+        (b) Go to Step 16.
+Step 8: For j = 0 to N - 1, repeat Step 9.
+Step 9: (a) Extract the character at index j from row, convert it to an integer, 
+            and store it in mat[i][j].
+        (b) If mat[i][j] < 0 OR mat[i][j] > 7, then:
+            (i) Print "INVALID INPUT".
+            (ii) Go to Step 16.
+Step 10: Print the heading "FILLED MATRIX DECIMAL EQUIVALENT".
+Step 11: For i = 0 to M - 1, repeat Steps 12 to 15.
+Step 12: Initialize an integer variable octal = 0.
+Step 13: For j = 0 to N - 1, repeat Step 14.
+Step 14: (a) Print the value of mat[i][j] followed by a space.
+         (b) Calculate octal = (octal * 8) + mat[i][j].
+Step 15: Print the value of octal with appropriate spacing (tab space) and 
+         move to the next line.
+Step 16: Stop.
+============================================================================== */
